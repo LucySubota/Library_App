@@ -1,5 +1,6 @@
 package com.library.utilities;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,7 +10,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
@@ -36,7 +36,7 @@ public class Driver {
                 case "headless-chrome":
                     //WebDriverManager.chromedriver().setup();
                     ChromeOptions option = new ChromeOptions();
-                    option.setHeadless(true);
+                    option.addArguments("--headless=new");
                     driverPool.set(new ChromeDriver(option));
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -50,7 +50,7 @@ public class Driver {
                 case "headless-firefox":
                     //WebDriverManager.firefoxdriver().setup();
                     FirefoxOptions option2 = new FirefoxOptions();
-                    option2.setHeadless(true);
+                    option2.addArguments("--headless=new");
                     driverPool.set(new FirefoxDriver(option2));
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

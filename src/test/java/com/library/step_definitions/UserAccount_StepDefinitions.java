@@ -23,7 +23,6 @@ public class UserAccount_StepDefinitions {
     UsersPage usersPage = new UsersPage();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
     String fullName;
-    Actions actions = new Actions(Driver.getDriver());
 
     @When("I login using {string} and {string}")
     public void i_login_using_and(String email, String password) {
@@ -76,11 +75,15 @@ public class UserAccount_StepDefinitions {
         wait.until(ExpectedConditions.visibilityOf(usersPage.statusDropdownOnMainPage));
         usersPage.chooseStatusOnMainPage(currentStatus);
         usersPage.searchInput.sendKeys(fullName + Keys.ENTER);
+        wait.until(ExpectedConditions.elementToBeClickable(usersPage.editUserButtonForFirstUserInList));
         usersPage.editUserButtonForFirstUserInList.click();
+        wait.until(ExpectedConditions.elementToBeClickable(usersPage.statusDropdownInForm));
         usersPage.chooseStatusInForm(changeStatus);
+        BrowserUtils.sleep(1);
         usersPage.saveChangesButton.click();
         ResultSet rs = DB_Utils.runQuery("SELECT status FROM users where full_name = '"+fullName+"'");
         String expectedStatus = DB_Utils.getFirstRowFirstColumn();
+        BrowserUtils.sleep(2);
         Assert.assertEquals(expectedStatus, changeStatus);
     }
 

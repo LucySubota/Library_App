@@ -1,3 +1,4 @@
+
 Feature: User management
 @db
   Scenario: Updating user status as librarian should change current user status in DB
