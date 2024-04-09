@@ -75,7 +75,7 @@ public class UserAccount_StepDefinitions {
         wait.until(ExpectedConditions.visibilityOf(usersPage.statusDropdownOnMainPage));
         usersPage.chooseStatusOnMainPage(currentStatus);
         usersPage.searchInput.sendKeys(fullName + Keys.ENTER);
-        wait.until(ExpectedConditions.elementToBeClickable(usersPage.editUserButtonForFirstUserInList));
+        BrowserUtils.sleep(2);
         usersPage.editUserButtonForFirstUserInList.click();
         wait.until(ExpectedConditions.elementToBeClickable(usersPage.statusDropdownInForm));
         usersPage.chooseStatusInForm(changeStatus);

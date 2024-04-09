@@ -29,6 +29,32 @@ public class BooksPage extends BasePage {
     @FindBy(xpath = "//input[@type='search']")
     public WebElement searchInput;
 
+    @FindBy(css = "a[href='tpl/add-book.html']")
+    public WebElement addBookButton;
+
+    @FindBy(css = "input[name='name']")
+    public WebElement bookNameInput;
+
+    @FindBy(css = "input[name='isbn']")
+    public WebElement bookISBNinput;
+
+    @FindBy(css = "input[name='year']")
+    public WebElement bookYearInput;
+
+    @FindBy(css = "input[name='author']")
+    public WebElement bookAuthorInput;
+
+    @FindBy(xpath = "//button[.='Save changes']")
+    public WebElement saveChangesButton;
+
+    @FindBy(xpath = "//div[@class='toast-message']")
+    public WebElement popUpMessage;
+
+    @FindBy(css = "#book_group_id")
+    public WebElement booksCategoriesForNewBook;
+
+
+
 
     public List<String> getListOfBooksCategories_String() {
         Select categories = new Select(booksCategories);
@@ -40,14 +66,20 @@ public class BooksPage extends BasePage {
         return booksCategories;
     }
 
+    public void selectCategoryForNewBook(String category){
+        Select dropdown = new Select(booksCategoriesForNewBook);
+        dropdown.selectByVisibleText(category);
+
+    }
+
     /*
         returns a list of all books (as Maps) in format isbn/name/author/category/year
         that are matching a search request from Library WebSite
      */
-    public List<Map<String, String>> getListOfBooksBySearchRequestFromDB(String searchRequest) {
+    public List<Map<String, String>> getListOfBooksBySearchRequestFromDB(String bookName) {
         List<Map<String, String>> listOfBooks = new ArrayList<>();
         try {
-            ResultSet rs = DB_Utils.runQuery("SELECT isbn, books.name as Name, author, book_categories.name as 'Category', year FROM books join book_categories ON books.book_category_id = book_categories.id WHERE books.name LIKE '%" + searchRequest + "%' ORDER BY isbn DESC");
+            ResultSet rs = DB_Utils.runQuery("SELECT isbn, books.name as Name, author, book_categories.name as 'Category', year FROM books join book_categories ON books.book_category_id = book_categories.id WHERE books.name LIKE '%" + bookName + "%' ORDER BY isbn DESC");
             ResultSetMetaData rsmd = rs.getMetaData();
             rs.beforeFirst();
             while (rs.next()) {
@@ -55,7 +87,7 @@ public class BooksPage extends BasePage {
 
                 for (int j = 1; j <= rsmd.getColumnCount(); j++) {
 
-                    if (rsmd.getColumnName(j).equalsIgnoreCase("name") && !rs.getString(j).contains(searchRequest)) {
+                    if (rsmd.getColumnName(j).equalsIgnoreCase("name") && !rs.getString(j).contains(bookName)) {
 
                         book.put("category", rs.getString(j));
                     } else {
@@ -135,5 +167,8 @@ public class BooksPage extends BasePage {
         }
         return listOfBooks;
     }
+
+
+
 
 }

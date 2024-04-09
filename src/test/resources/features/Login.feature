@@ -30,8 +30,8 @@ Feature: Login feature
     When user gets username from user fields
     Then the username should be same with database
     Examples:
-      | email               | password    |
-      | librarian22@library | libraryUser |
-      | librarian27@library | libraryUser |
-      | student5@library    | libraryUser |
-      | student6@library    | libraryUser |
+      | email              | password    |
+      | librarian1@library | libraryUser |
+      | librarian2@library | libraryUser |
+      | student5@library   | libraryUser |
+      | student6@library   | libraryUser |
