@@ -31,7 +31,6 @@ public class StudentDashboardPage extends BasePage{
 
     public void returnBook(String bookName){
         List<WebElement> booksNames = Driver.getDriver().findElements(By.xpath("//table[@id='borrowed_list']/tbody/tr/td[2]"));
-        int booksCountInTable = Driver.getDriver().findElements(By.xpath("//table[@id='borrowed_list']/tbody/tr")).size();
         for (int i = 0; i < booksNames.size(); i++) {
             if(booksNames.get(i).getText().equalsIgnoreCase(bookName)){
                 WebElement returnButton = Driver.getDriver().findElement( By.xpath("//table[@id='borrowed_list']/tbody/tr["+(i+1)+"]/td[1]/a"));
