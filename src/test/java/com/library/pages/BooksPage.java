@@ -19,9 +19,9 @@ import java.util.Map;
 
 public class BooksPage extends BasePage {
 
-    public BooksPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+//    public BooksPage() {
+//        PageFactory.initElements(Driver.getDriver(), this);
+//    }
 
     @FindBy(css = "#book_categories")
     public WebElement booksCategories;
@@ -113,7 +113,6 @@ public class BooksPage extends BasePage {
 
         try {
             int bookMatchesFound = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/tbody/tr")).size();
-            List<WebElement> bookColumns = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/tbody/tr[1]/td"));
             List<WebElement> listOfHeaders = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/thead//th"));
             int columnsForBook = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/tbody/tr[1]/td")).size();
 
@@ -145,7 +144,6 @@ public class BooksPage extends BasePage {
 
         try {
             int bookMatchesFound = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/tbody/tr")).size();
-            List<WebElement> bookColumns = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/tbody/tr[1]/td"));
             List<WebElement> listOfHeaders = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/thead//th"));
             int columnsForBook = Driver.getDriver().findElements(By.xpath("//table[@id='tbl_books']/tbody/tr[1]/td")).size();
 

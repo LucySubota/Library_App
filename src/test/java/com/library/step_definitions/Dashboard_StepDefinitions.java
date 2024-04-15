@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 
 public class Dashboard_StepDefinitions {
 
-    LibrarianDashboardPage dashboardPage = new LibrarianDashboardPage();
+    LibrarianDashboardPage dashboardPage;
     String usersCount;
     String booksCount;
     String borrowedBooksCount;
 
     @When("user gets all information from modules")
     public void user_gets_all_information_from_modules() {
+        dashboardPage = new LibrarianDashboardPage();
         usersCount = dashboardPage.usersIcon.getText();
         booksCount = dashboardPage.booksIcon.getText();
         borrowedBooksCount = dashboardPage.borrowedBooksIcon.getText();

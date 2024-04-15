@@ -10,11 +10,12 @@ import java.sql.ResultSet;
 
 public class BorrowedBooks_StepDefinitions {
 
-    LibrarianDashboardPage dashboardPage = new LibrarianDashboardPage();
+    LibrarianDashboardPage dashboardPage;
     String borrowedBooksCount;
 
     @When("the librarian gets borrowed books number")
     public void the_librarian_gets_borrowed_books_number() {
+        dashboardPage = new LibrarianDashboardPage();
         borrowedBooksCount = dashboardPage.borrowedBooksIcon.getText();
     }
 

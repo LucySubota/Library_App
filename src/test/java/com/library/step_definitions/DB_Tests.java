@@ -19,11 +19,12 @@ import java.util.Map;
 
 public class DB_Tests {
 
-    LoginPage loginPage = new LoginPage();
-    BooksPage booksPage = new BooksPage();
+    LoginPage loginPage;
+    BooksPage booksPage;
 
     @Test
     public void test1() {
+        loginPage = new LoginPage();
         Driver.getDriver().get(ConfigurationReader.getProperty("qa2_url"));
         loginPage.login("librarian");
         DB_Utils.createConnection();
@@ -40,7 +41,7 @@ public class DB_Tests {
 
     @Test
     public void test2() throws SQLException {
-
+        booksPage = new BooksPage();
         DB_Utils.createConnection();
 
         List<Map<String, String>> expectedListOfBooks = booksPage.getListOfBooksBySearchRequestFromDB("Harry Potter");

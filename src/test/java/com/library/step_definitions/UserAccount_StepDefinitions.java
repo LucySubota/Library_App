@@ -19,13 +19,14 @@ import java.time.Duration;
 
 public class UserAccount_StepDefinitions {
 
-    LoginPage loginPage = new LoginPage();
-    UsersPage usersPage = new UsersPage();
+    LoginPage loginPage;
+    UsersPage usersPage;
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
     String fullName;
 
     @When("I login using {string} and {string}")
     public void i_login_using_and(String email, String password) {
+        loginPage = new LoginPage();
         loginPage.login(email, password);
     }
 
@@ -38,6 +39,7 @@ public class UserAccount_StepDefinitions {
     @When("the user clicks Edit User button")
     public void the_user_clicks_edit_user_button() {
         //usersPage.searchInput.sendKeys("Simonne Wolff" + Keys.ENTER);
+        usersPage = new UsersPage();
         fullName = usersPage.fullNameForFirstUserInList.getText();
         usersPage.editUserButtonForFirstUserInList.click();
     }
