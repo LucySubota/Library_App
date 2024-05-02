@@ -23,7 +23,31 @@ public class LibrarianDashboardPage extends BasePage{
     @FindBy (xpath = "//a[@id='navbarDropdown']/span")
     public WebElement userIcon;
 
+    @FindBy (css = "a[href='#books']")
+    public WebElement booksButton;
 
+    @FindBy (css = "a[href='#users']")
+    public WebElement usersButton;
+
+    @FindBy (css = "a[href='#dashboard']")
+    public WebElement dashboardButton;
+
+    public void navigateToPage(String page){
+        page = page.toLowerCase();
+        switch (page){
+            case "books":
+            booksButton.click();
+            break;
+             case "users":
+            usersButton.click();
+            break;
+             case "dashboard":
+            dashboardButton.click();
+            break;
+            default:
+            throw new IllegalArgumentException("NO SUCH BUTTON TO PRESS");
+        }
+    }
 
 
 

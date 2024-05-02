@@ -28,22 +28,9 @@ public class LoginPage extends BasePage{
     }
 
     public void login(String userType){
-        String username;
-        String password;
-        switch (userType) {
-            case "librarian":
-            case "Librarian":
-           username  = ConfigurationReader.getProperty("lib22_user");
-           password  = ConfigurationReader.getProperty("lib22_pass");
-           break;
-            case "student":
-            case "Student":
-           username  = ConfigurationReader.getProperty("student55_user");
-           password  = ConfigurationReader.getProperty("student55_pass");
-           break;
-            default:
-            throw new IllegalArgumentException("NO SUCH USER TYPE FOUND");
-        }
+        // These are environment variables for security, username for librarian is a PC variable and the rest are IntelliJ variables (being autocommited to GitHub)
+        String username = System.getenv(userType+"_username");
+        String password = System.getenv(userType+"_password");
         login(username, password);
     }
 

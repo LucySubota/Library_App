@@ -1,5 +1,6 @@
 package com.library.pages;
 
+import com.library.utilities.BrowserUtils;
 import com.library.utilities.DB_Utils;
 import com.library.utilities.Driver;
 import org.openqa.selenium.By;
@@ -139,6 +140,7 @@ public class BooksPage extends BasePage {
     public List<Map<String, String>> getListOfBooksBySearchRequestFromUI(String searchValue) {
 
         searchInput.sendKeys(searchValue + Keys.ENTER);
+        BrowserUtils.sleep(2);
 
         List<Map<String, String>> listOfBooks = new ArrayList<>();
 
@@ -150,9 +152,7 @@ public class BooksPage extends BasePage {
 
             for (int i = 1; i <= bookMatchesFound; i++) {
                 Map<String, String> book = new LinkedHashMap<>();
-
                 for (int j = 2; j < columnsForBook; j++) {
-
                     WebElement currentBooksColumn = Driver.getDriver().findElement(By.xpath("//table[@id='tbl_books']/tbody/tr[" + i + "]/td[" + j + "]"));
 
                     book.put(listOfHeaders.get(j - 1).getText().toLowerCase(), currentBooksColumn.getText());

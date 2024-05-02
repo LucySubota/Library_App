@@ -2,10 +2,9 @@ package com.library.step_definitions;
 
 import com.library.pages.BooksPage;
 import com.library.pages.LoginPage;
-import com.library.utilities.BrowserUtils;
-import com.library.utilities.ConfigurationReader;
-import com.library.utilities.DB_Utils;
-import com.library.utilities.Driver;
+import com.library.utilities.*;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -71,7 +70,6 @@ public class DB_Tests {
         Assert.assertEquals(expectedListOfBooks, actualListOfBooks);
     }
 
-
     @Test
     public void test3() {
 
@@ -89,4 +87,30 @@ public class DB_Tests {
         }
 
     }
+
+
+    @Test
+    public void tryingDB_ReaderClass(){
+
+        String query = DB_FileReader.getQuery("get all books");
+        System.out.println(query);
+    }
+
+    @Test
+    public void testAllBrokenLinks(){
+
+        Driver.getDriver().get("http://54.80.233.175:8000/spartans");
+        List<WebElement> links = Driver.getDriver().findElements(By.tagName("a"));
+        for (WebElement link : links) {
+            String url = link.getAttribute("href");
+            System.out.println(url);
+            if(url!= null && !url.isEmpty()) {
+                Response response = RestAssured.get(url);
+                Assert.assertEquals(200, response.statusCode());
+            }
+        }
+
+        Driver.closeDriver();
+    }
+
 }
