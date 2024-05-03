@@ -1,5 +1,6 @@
 package com.library.pages;
 
+import com.library.utilities.BrowserUtils;
 import com.library.utilities.ConfigurationReader;
 import com.library.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -12,16 +13,17 @@ public class LoginPage extends BasePage{
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy (id = "inputEmail")
+    @FindBy (xpath = "//input[@placeholder='Email address']")
     public WebElement usernameBox;
 
-    @FindBy (id = "inputPassword")
+    @FindBy (css = "#inputPassword")
     public WebElement passwordBox;
 
     @FindBy (xpath = "//button[.='Sign in']")
     public WebElement signInButton;
 
     public void login(String username, String password){
+        //BrowserUtils.sleep(1);
         usernameBox.sendKeys(username);
         passwordBox.sendKeys(password);
         signInButton.click();

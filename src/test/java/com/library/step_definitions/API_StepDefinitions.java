@@ -203,14 +203,17 @@ public class API_StepDefinitions {
 
     @Then("created user should be able to login Library UI")
     public void created_user_should_be_able_to_login_library_ui() {
-        usersPage = new UsersPage();
+        loginPage = new LoginPage();
+        librarianDashboardPage = new LibrarianDashboardPage();
         loginPage.login((String)newCreation.get("email"), (String)newCreation.get("password"));
         Assert.assertTrue(librarianDashboardPage.borrowedBooksIcon.isDisplayed());
     }
 
     @Then("created user name should appear in Dashboard Page")
     public void created_user_name_should_appear_in_dashboard_page() {
-
+        String usernameFromAPI = (String) newCreation.get("full_name");
+        System.out.println(usernameFromAPI);
+        Assert.assertEquals(usernameFromAPI, librarianDashboardPage.userIcon.getText());
     }
 
     @Given("I logged Library api with credentials {string} and {string}")
