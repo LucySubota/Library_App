@@ -17,13 +17,14 @@ public abstract class BasePage {
     @FindBy (xpath = "//a[@href='#books']")
     public WebElement booksButton;
 
-
     @FindBy (xpath = "//a[@href='#users']")
     public WebElement usersButton;
 
-
     @FindBy (xpath = "//a[@href='#dashboard']")
     public WebElement dashboardButton;
+
+    @FindBy (css = "a[href='#borrowing-books']")
+    public WebElement borrowingBooksButton;
 
     public void goToPage(String pageName){
         switch (pageName){

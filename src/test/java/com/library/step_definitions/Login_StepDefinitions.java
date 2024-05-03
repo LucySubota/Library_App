@@ -17,9 +17,9 @@ import java.time.Duration;
 
 public class Login_StepDefinitions {
 
-    LoginPage loginPage = new LoginPage();
-    LibrarianDashboardPage dashboardPage = new LibrarianDashboardPage();
-    StudentDashboardPage studentDashboardPage = new StudentDashboardPage();
+    LoginPage loginPage;
+    LibrarianDashboardPage dashboardPage;
+    StudentDashboardPage studentDashboardPage;
     String actualUsername;
     String email;
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
@@ -31,6 +31,7 @@ public class Login_StepDefinitions {
 
     @When("I login as a librarian")
     public void i_login_as_a_librarian() {
+        loginPage = new LoginPage();
         String username = ConfigurationReader.getProperty("lib22_user");
         String password = ConfigurationReader.getProperty("lib22_pass");
         loginPage.login(username, password);
@@ -45,6 +46,7 @@ public class Login_StepDefinitions {
 
     @Then("books should be displayed")
     public void books_should_be_displayed() {
+        studentDashboardPage = new StudentDashboardPage();
         Assert.assertTrue(studentDashboardPage.booksTable.isDisplayed());
     }
 
@@ -65,6 +67,7 @@ public class Login_StepDefinitions {
 
     @When("there should be {int} users")
     public void there_should_be_users(Integer numOfUsers) {
+        dashboardPage = new LibrarianDashboardPage();
         Assert.assertEquals(String.valueOf(numOfUsers), dashboardPage.usersIcon.getText());
     }
 
@@ -77,11 +80,13 @@ public class Login_StepDefinitions {
     @Given("the user logged in  {string} and {string}")
     public void the_user_logged_in_and(String username, String password) {
         email = username;
+        loginPage = new LoginPage();
         loginPage.login(username, password);
     }
 
     @When("user gets username from user fields")
     public void user_gets_username_from_user_fields() {
+        dashboardPage = new LibrarianDashboardPage();
         wait.until(ExpectedConditions.visibilityOf(dashboardPage.userIcon));
         actualUsername = dashboardPage.userIcon.getText();
     }

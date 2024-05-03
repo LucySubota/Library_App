@@ -1,5 +1,6 @@
 package com.library.pages;
 
+import com.library.utilities.BrowserUtils;
 import com.library.utilities.ConfigurationReader;
 import com.library.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -12,38 +13,26 @@ public class LoginPage extends BasePage{
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy (id = "inputEmail")
+    @FindBy (xpath = "//input[@placeholder='Email address']")
     public WebElement usernameBox;
 
-    @FindBy (id = "inputPassword")
+    @FindBy (css = "#inputPassword")
     public WebElement passwordBox;
 
     @FindBy (xpath = "//button[.='Sign in']")
     public WebElement signInButton;
 
     public void login(String username, String password){
+        //BrowserUtils.sleep(1);
         usernameBox.sendKeys(username);
         passwordBox.sendKeys(password);
         signInButton.click();
     }
 
     public void login(String userType){
-        String username;
-        String password;
-        switch (userType) {
-            case "librarian":
-            case "Librarian":
-           username  = ConfigurationReader.getProperty("lib22_user");
-           password  = ConfigurationReader.getProperty("lib22_pass");
-           break;
-            case "student":
-            case "Student":
-           username  = ConfigurationReader.getProperty("student55_user");
-           password  = ConfigurationReader.getProperty("student55_pass");
-           break;
-            default:
-            throw new IllegalArgumentException("NO SUCH USER TYPE FOUND");
-        }
+        // These are environment variables for security, username for librarian is a PC variable and the rest are IntelliJ variables (being autocommited to GitHub)
+        String username = System.getenv(userType+"_username");
+        String password = System.getenv(userType+"_password");
         login(username, password);
     }
 

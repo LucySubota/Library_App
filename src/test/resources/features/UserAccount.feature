@@ -2,7 +2,7 @@ Feature: User account tests
   As a user, I should be able to login with different users using their correct emails and passwords.
   when I login, I should be able to see username in the account username section.
 
-  @all_accounts
+  @all_accounts @ui
   Scenario Outline: Verify user information <email>
     Given I am on the login page
     When I login using "<email>" and "<password>"
