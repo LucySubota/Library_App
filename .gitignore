@@ -1,8 +1,5 @@
 target
-runners
-configuration.properties
 .idea
 *.iml
 out
-pom.xml
 DB_Test.sql
