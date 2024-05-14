@@ -32,16 +32,12 @@ public class Login_StepDefinitions {
     @When("I login as a librarian")
     public void i_login_as_a_librarian() {
         loginPage = new LoginPage();
-        String username = ConfigurationReader.getProperty("lib22_user");
-        String password = ConfigurationReader.getProperty("lib22_pass");
-        loginPage.login(username, password);
+        loginPage.login("librarian");
     }
 
     @When("I login as a student")
     public void i_login_as_a_student() {
-        String username = ConfigurationReader.getProperty("student55_user");
-        String password = ConfigurationReader.getProperty("student55_pass");
-        loginPage.login(username, password);
+        loginPage.login("student");
     }
 
     @Then("books should be displayed")

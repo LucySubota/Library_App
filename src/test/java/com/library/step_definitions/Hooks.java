@@ -30,7 +30,7 @@ public class Hooks {
         Driver.getDriver().get(ConfigurationReader.getProperty("qa2_url"));
     }
 
-    @After
+    @After ("@ui")
     public void tearDown(Scenario scenario){
         if(scenario.isFailed()){
             byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
