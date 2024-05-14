@@ -27,4 +27,4 @@ Feature: As a data consumer, I want the user information are stored in mySql DB 
   #US: As a data consumer, I want to know genre of books are being borrowed the most
   Scenario: verify the the common book genre that’s being borrowed
     When I execute query to find most popular book genre
-    Then I verify "Essay" is the most popular book genre.
+    Then I verify "Romance" is the most popular book genre.

@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/library/step_definitions",
         dryRun = false,
-        tags = "@api_sprint"
+        tags = ""
         // publish = true, // Enable publishing of test results
         // publishUrl = "https://reporting-server.example.com" // Specify the URL of the reporting server
 

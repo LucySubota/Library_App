@@ -3,7 +3,6 @@ package com.library.step_definitions;
 import com.library.pages.BooksPage;
 import com.library.pages.LibrarianDashboardPage;
 import com.library.pages.LoginPage;
-import com.library.pages.UsersPage;
 import com.library.utilities.API_Utils;
 import com.library.utilities.ConfigurationReader;
 import com.library.utilities.DB_Utils;
@@ -32,7 +31,6 @@ public class API_StepDefinitions {
     LoginPage loginPage;
     LibrarianDashboardPage librarianDashboardPage;
     BooksPage booksPage;
-    UsersPage usersPage;
 
     @Given("I logged Library api as a {string}")
     public void i_logged_library_api_as_a(String userType) {
