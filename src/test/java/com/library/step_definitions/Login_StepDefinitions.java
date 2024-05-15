@@ -94,7 +94,4 @@ public class Login_StepDefinitions {
         String expectedUserName = DB_Utils.getFirstRowFirstColumn();
         Assert.assertEquals(expectedUserName, actualUsername);
     }
-
-
-
 }
