@@ -61,6 +61,7 @@ public class UserAccount_StepDefinitions {
 
     @Then("{string} message should appear")
     public void message_should_appear(String message) {
+        BrowserUtils.sleep(2);
         wait.until(ExpectedConditions.visibilityOf(usersPage.theUserUpdatedMessage));
         Assert.assertTrue(usersPage.theUserUpdatedMessage.isDisplayed() && usersPage.theUserUpdatedMessage.getText().equals(message));
     }
