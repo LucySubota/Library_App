@@ -37,6 +37,7 @@ public class Login_StepDefinitions {
 
     @When("I login as a student")
     public void i_login_as_a_student() {
+        loginPage = new LoginPage();
         loginPage.login("student");
     }
 
